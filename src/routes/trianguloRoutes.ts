@@ -100,6 +100,7 @@ class TrianguloRoutes {
 
     // Si todo va bien no tengo que develver nada al cliente de la REST API
     // devolver algo lo considera error el .subscribe()
+    
     private getDelete = async (req: Request, res: Response) => {
         const {nombre } = req.params
         await db.conectarBD()
