@@ -131,13 +131,13 @@ class TrianguloRoutes {
         });
         this.actualiza = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { nombre } = req.params;
-            const { base, altura, lado2, lado3 } = req.body;
+            const { base, altura, lado1, lado2 } = req.body;
             yield database_1.db.conectarBD();
             yield triangulo_1.Triangulos.findOneAndUpdate({ _nombre: nombre }, {
                 _nombre: nombre,
                 _base: base,
-                _lado2: lado2,
-                _lado3: lado3,
+                _lado2: lado1,
+                _lado3: lado2,
                 _altura: altura
             }, {
                 new: true,
