@@ -147,15 +147,15 @@ class TrianguloRoutes {
     }
     private actualiza = async (req: Request, res: Response) => {
         const { nombre } = req.params
-        const { base, altura, lado2, lado3 } = req.body
+        const { base, altura, lado1, lado2 } = req.body
         await db.conectarBD()
         await Triangulos.findOneAndUpdate(
                 { _nombre: nombre }, 
                 {
                     _nombre: nombre,
                     _base: base,
-                    _lado2: lado2,
-                    _lado3: lado3,
+                    _lado2: lado1,
+                    _lado3: lado2,
                     _altura: altura
                 },
                 {
