@@ -91,6 +91,8 @@ class TrianguloRoutes {
             });
             database_1.db.desconectarBD();
         });
+        // Si todo va bien no tengo que develver nada al cliente de la REST API
+        // devolver algo lo considera error el .subscribe()
         this.getDelete = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { nombre } = req.params;
             yield database_1.db.conectarBD();
@@ -103,8 +105,7 @@ class TrianguloRoutes {
                         res.send(`No encontrado`);
                     }
                     else {
-                        console.log('Borrado correcto: ' + doc);
-                        res.send('Borrado correcto: ' + doc);
+                        res.send('Funciona');
                     }
                 }
             });

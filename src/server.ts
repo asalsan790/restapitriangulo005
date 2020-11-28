@@ -18,7 +18,7 @@ class Server {
         this.app.use(express.json()) // para que nuestro servidor entienda
         this.app.use(cors()) // evitar el error CORS
         // Configurar cabeceras y cors
-        /*
+/*
         this.app.use((req, res, next) => {
             res.header('Access-Control-Allow-Origin', '*');
             res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -26,7 +26,7 @@ class Server {
             res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
             next();
         });
-        */
+*/
 
 
         // los formatos json desde clientes
