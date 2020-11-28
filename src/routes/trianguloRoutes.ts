@@ -98,6 +98,8 @@ class TrianguloRoutes {
         db.desconectarBD()
     }
 
+    // Si todo va bien no tengo que develver nada al cliente de la REST API
+    // devolver algo lo considera error el .subscribe()
     private getDelete = async (req: Request, res: Response) => {
         const {nombre } = req.params
         await db.conectarBD()
@@ -109,9 +111,6 @@ class TrianguloRoutes {
                     if (doc == null) {
                         console.log(`No encontrado`)
                         res.send(`No encontrado`)
-                    }else {
-                        console.log('Borrado correcto: '+ doc)
-                        res.send('Borrado correcto: '+ doc)
                     }
                 }
             })
