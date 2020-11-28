@@ -104,9 +104,6 @@ class TrianguloRoutes {
                         console.log(`No encontrado`);
                         res.send(`No encontrado`);
                     }
-                    else {
-                        res.send('Funciona');
-                    }
                 }
             });
             database_1.db.desconectarBD();

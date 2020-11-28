@@ -111,8 +111,6 @@ class TrianguloRoutes {
                     if (doc == null) {
                         console.log(`No encontrado`)
                         res.send(`No encontrado`)
-                    }else{
-                        res.send('Funciona')
                     }
                 }
             })
