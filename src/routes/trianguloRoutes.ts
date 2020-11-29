@@ -182,6 +182,43 @@ class TrianguloRoutes {
         db.desconectarBD()
     }
 
+    private actualizaId = async (req: Request, res: Response) => {
+        const { id } = req.params
+        const { base, altura, lado1, lado2 } = req.body
+        await db.conectarBD()
+        await Triangulos.findOneAndUpdate(
+                { _id: id }, 
+                {
+                   // _nombre: nombre,
+                    _base: base,
+                    _lado2: lado1,
+                    _lado3: lado2,
+                    _altura: altura
+                },
+                {
+                    new: true,
+                    runValidators: true // para que se ejecuten las validaciones del Schema
+                }  
+            )
+            .then( (docu) => {
+                    if (docu==null){
+                        console.log('El triangulo que desea modificar no existe')
+                        res.json({"Error":"No existe: " + id})
+                    } else {
+                        console.log('Modificado Correctamente: '+ docu) 
+                        res.json(docu)
+                    }
+                    
+                }
+            )
+            .catch( (err) => {
+                console.log('Error: '+err)
+                res.json({error: 'Error: '+err })
+            }
+            ) // concatenando con cadena muestra mensaje
+        db.desconectarBD()
+    }
+
     misRutas(){
         this._router.get('/', this.getTriangulos)
         this._router.post('/nuevo', this.nuevoTriangulo)
@@ -189,6 +226,7 @@ class TrianguloRoutes {
         this._router.get('/borrar/:nombre', this.getDelete)
         this._router.get('/areas', this.getAreas)
         this._router.post('/actualiza/:nombre', this.actualiza)
+        this._router.post('/actualizaId/:id', this.actualizaId)
     }
 }
 

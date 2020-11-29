@@ -159,6 +159,36 @@ class TrianguloRoutes {
             }); // concatenando con cadena muestra mensaje
             database_1.db.desconectarBD();
         });
+        this.actualizaId = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const { base, altura, lado1, lado2 } = req.body;
+            yield database_1.db.conectarBD();
+            yield triangulo_1.Triangulos.findOneAndUpdate({ _id: id }, {
+                // _nombre: nombre,
+                _base: base,
+                _lado2: lado1,
+                _lado3: lado2,
+                _altura: altura
+            }, {
+                new: true,
+                runValidators: true // para que se ejecuten las validaciones del Schema
+            })
+                .then((docu) => {
+                if (docu == null) {
+                    console.log('El triangulo que desea modificar no existe');
+                    res.json({ "Error": "No existe: " + id });
+                }
+                else {
+                    console.log('Modificado Correctamente: ' + docu);
+                    res.json(docu);
+                }
+            })
+                .catch((err) => {
+                console.log('Error: ' + err);
+                res.json({ error: 'Error: ' + err });
+            }); // concatenando con cadena muestra mensaje
+            database_1.db.desconectarBD();
+        });
         this._router = express_1.Router();
     }
     get router() {
@@ -171,6 +201,7 @@ class TrianguloRoutes {
         this._router.get('/borrar/:nombre', this.getDelete);
         this._router.get('/areas', this.getAreas);
         this._router.post('/actualiza/:nombre', this.actualiza);
+        this._router.post('/actualizaId/:id', this.actualizaId);
     }
 }
 const obj = new TrianguloRoutes();
