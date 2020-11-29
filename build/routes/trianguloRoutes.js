@@ -106,7 +106,30 @@ class TrianguloRoutes {
                 else {
                     if (doc == null) {
                         console.log(`No encontrado`);
-                        res.send(`No encontrado`);
+                        res.json({ "status": "No encontrado" });
+                    }
+                    else {
+                        res.json({ "status": "ok" });
+                    }
+                }
+            });
+            database_1.db.desconectarBD();
+        });
+        this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { nombre } = req.params;
+            yield database_1.db.conectarBD();
+            yield triangulo_1.Triangulos.findOneAndDelete({ _nombre: nombre }, (err, doc) => {
+                if (err) {
+                    console.log(err);
+                    res.json({ "status": "Error" });
+                }
+                else {
+                    if (doc == null) {
+                        console.log(`No encontrado`);
+                        res.json({ "status": "No encontrado" });
+                    }
+                    else {
+                        res.json({ "status": "ok" });
                     }
                 }
             });
@@ -203,6 +226,7 @@ class TrianguloRoutes {
         this._router.post('/nuevo', this.nuevoTriangulo);
         this._router.get('/area/:nombre', this.getArea);
         this._router.get('/borrar/:nombre', this.getDelete);
+        this._router.delete('/borrar/:nombre', this.delete);
         this._router.get('/areas', this.getAreas);
         this._router.post('/actualiza/:nombre', this.actualiza);
         this._router.post('/actualizaId/:id', this.actualizaId);

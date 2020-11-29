@@ -16,7 +16,7 @@ exports.db = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 class DataBase {
     constructor() {
-        //  private _cadenaConexion: string = 'mongodb://localhost/geometria'
+        //private _cadenaConexion: string = 'mongodb://localhost/geometria'
         this._cadenaConexion = `mongodb+srv://prueba:prueba@cluster0.viyli.mongodb.net/prueba?retryWrites=true&w=majority`;
         this.conectarBD = () => __awaiter(this, void 0, void 0, function* () {
             const promise = new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 class DataBase {
 
-  //  private _cadenaConexion: string = 'mongodb://localhost/geometria'
+ //private _cadenaConexion: string = 'mongodb://localhost/geometria'
     private _cadenaConexion: string =  
     `mongodb+srv://prueba:prueba@cluster0.viyli.mongodb.net/prueba?retryWrites=true&w=majority`
 
