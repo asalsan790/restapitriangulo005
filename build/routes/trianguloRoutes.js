@@ -8,11 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.trianguloRoutes = void 0;
 const express_1 = require("express");
 const triangulo_1 = require("../model/triangulo");
 const database_1 = require("../database/database");
+const mongoose_1 = __importDefault(require("mongoose"));
 class TrianguloRoutes {
     constructor() {
         this.getTriangulos = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -163,7 +167,7 @@ class TrianguloRoutes {
             const { id } = req.params;
             const { base, altura, lado1, lado2 } = req.body;
             yield database_1.db.conectarBD();
-            yield triangulo_1.Triangulos.findOneAndUpdate({ _id: id }, {
+            yield triangulo_1.Triangulos.findOneAndUpdate({ _id: mongoose_1.default.Types.ObjectId(id) }, {
                 // _nombre: nombre,
                 _base: base,
                 _lado2: lado1,

@@ -1,6 +1,7 @@
 import {Request, Response, Router } from 'express'
 import { Triangulos, Triangulo, tTriangulo } from '../model/triangulo'
 import { db } from '../database/database'
+import mongoose from 'mongoose'
 
 class TrianguloRoutes {
     private _router: Router
@@ -187,7 +188,7 @@ class TrianguloRoutes {
         const { base, altura, lado1, lado2 } = req.body
         await db.conectarBD()
         await Triangulos.findOneAndUpdate(
-                { _id: id }, 
+                { _id: mongoose.Types.ObjectId(id) }, 
                 {
                    // _nombre: nombre,
                     _base: base,
